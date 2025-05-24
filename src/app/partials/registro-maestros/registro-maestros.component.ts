@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { MaestrosService } from 'src/app/services/maestros.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FacadeService } from 'src/app/services/facade.service';
+declare var $:any; 
 
 @Component({
   selector: 'app-registro-maestros',
@@ -19,8 +23,9 @@ export class RegistroMaestrosComponent implements OnInit{
   public maestro:any = {};
   public errors:any = {};
   public editar:boolean = false;
+  public token: string = "";
+  public idUser: Number = 0;
 
-  //Para el select
   public areas: any[] = [
     {value: '1', viewValue: 'Desarrollo Web'},
     {value: '2', viewValue: 'Programación'},
@@ -30,70 +35,144 @@ export class RegistroMaestrosComponent implements OnInit{
   ];
 
   public materias:any[] = [
-    {value: '1', nombre: 'Aplicaciones Web'},
-    {value: '2', nombre: 'Programación 1'},
-    {value: '3', nombre: 'Bases de datos'},
-    {value: '4', nombre: 'Tecnologías Web'},
-    {value: '5', nombre: 'Minería de datos'},
-    {value: '6', nombre: 'Desarrollo móvil'},
-    {value: '7', nombre: 'Estructuras de datos'},
-    {value: '8', nombre: 'Administración de redes'},
-    {value: '9', nombre: 'Ingeniería de Software'},
-    {value: '10', nombre: 'Administración de S.O.'},
+    {value:'1', nombre: 'Aplicaciones Web'},
+    {value:'2', nombre: 'Programación 1'},
+    {value:'3', nombre: 'Bases de datos'},
+    {value:'4', nombre: 'Tecnologías Web'},
+    {value:'5', nombre: 'Minería de datos'},
+    {value:'6', nombre: 'Desarrollo móvil'},
+    {value:'7', nombre: 'Estructuras de datos'},
+    {value:'8', nombre: 'Administración de redes'},
+    {value:'9', nombre: 'Ingeniería de Software'},
+    {value:'10', nombre: 'Administración de S.O.'},
   ];
 
   constructor(
-    private location : Location,
+    private location: Location,
+    private maestrosService:MaestrosService,
+    private router: Router,
+    public activatedRoute: ActivatedRoute,
+    private facadeService: FacadeService
   ){}
-
   ngOnInit(): void {
+  
+  if (this.activatedRoute.snapshot.params['id'] != undefined) {
+    this.editar = true;
+    this.idUser = this.activatedRoute.snapshot.params['id'];
+    console.log("ID User: ", this.idUser);
+    
+    this.maestro = this.datos_user;
 
+    // parsear materias_json si es string
+    if (typeof this.maestro.materias_json === 'string') {
+      try {
+        this.maestro.materias_json = JSON.parse(this.maestro.materias_json);
+      } catch (e) {
+        console.error("No se pudo parsear materias_json:", e);
+        this.maestro.materias_json = [];
+      }
+    }
+
+  } else {
+    this.maestro = this.maestrosService.esquemaMaestro();
+    this.maestro.rol = this.rol;
+    this.token = this.facadeService.getSessionToken();
   }
+
+  console.log("Maestro: ", this.maestro);
+}
+
 
   public regresar(){
     this.location.back();
   }
 
   public registrar(){
-
-  }
-
-  public actualizar(){
-
-  }
-
-  //Funciones para password
-  showPassword()
-  {
-    if(this.inputType_1 == 'password'){
-      this.inputType_1 = 'text';
-      this.hide_1 = true;
+       //validacion del formulario 
+      this.errors = [];
+    
+      this.errors = this.maestrosService.validarMaestro(this.maestro, this.editar);
+      if(!$.isEmptyObject(this.errors)){
+        return false;
+      }
+      if(this.maestro.password == this.maestro.confirmar_password){
+        this.maestrosService.registrarMaestro(this.maestro).subscribe(
+          (response)=>{
+            //Aquí va la ejecución del servicio si todo es correcto
+            alert("Usuario registrado correctamente");
+            console.log("Usuario registrado: ", response);
+            if(this.token != ""){
+              this.router.navigate(["home"]);
+            }else{
+              this.router.navigate(["/"]);
+            }
+          }, (error)=>{
+            //Aquí se ejecuta el error
+            alert("No se pudo registrar usuario");
+          }
+        );
+      }else{
+        alert("Las contraseñas no coinciden");
+      }
+      
     }
-    else{
-      this.inputType_1 = 'password';
-      this.hide_1 = false;
-    }
+    
+
+public actualizar(){
+  //Validación
+  this.errors = [];
+
+  this.errors = this.maestrosService.validarMaestro(this.maestro, this.editar);
+  if(!$.isEmptyObject(this.errors)){
+    return false;
   }
+  console.log("Pasó la validación");
 
-  showPwdConfirmar()
-  {
-    if(this.inputType_2 == 'password'){
-      this.inputType_2 = 'text';
-      this.hide_2 = true;
+  this.maestrosService.editarMaestro(this.maestro).subscribe(
+    (response)=>{
+      alert("Maestro editado correctamente");
+      console.log("Maestro editado: ", response);
+      //Si se editó, entonces mandar al home
+      this.router.navigate(["home"]);
+    }, (error)=>{
+      alert("No se pudo editar el maestro ");
     }
-    else{
-      this.inputType_2 = 'password';
-      this.hide_2 = false;
-    }
-  }
+  );
+}
+   //Funciones para password
+   showPassword()
+   {
+     if(this.inputType_1 == 'password'){
+       this.inputType_1 = 'text';
+       this.hide_1 = true;
+     }
+     else{
+       this.inputType_1 = 'password';
+       this.hide_1 = false;
+     }
+   }
+ 
+   showPwdConfirmar()
+   {
+     if(this.inputType_2 == 'password'){
+       this.inputType_2 = 'text';
+       this.hide_2 = true;
+     }
+     else{
+       this.inputType_2 = 'password';
+       this.hide_2 = false;
+     }
+   }
 
-  //Función para detectar el cambio de fecha
-  public changeFecha(event :any){
-    console.log(event);
-    console.log(event.value.toISOString());
-
-    this.maestro.fecha_nacimiento = event.value.toISOString().split("T")[0];
-    console.log("Fecha: ", this.maestro.fecha_nacimiento);
+    //Función para detectar el cambio de fecha
+  public changeFecha(event: any) {
+    const fecha = new Date(event.value);
+    const year = fecha.getFullYear();
+    const month = ('0' + (fecha.getMonth() + 1)).slice(-2);
+    const day = ('0' + fecha.getDate()).slice(-2);
+    
+    this.maestro.fecha_nacimiento = `${year}-${month}-${day}`;
+    console.log("Fecha corregida: ", this.maestro.fecha_nacimiento);
   }
 
   public checkboxChange(event:any){
@@ -123,4 +202,16 @@ export class RegistroMaestrosComponent implements OnInit{
       return false;
     }
   }
+  public soloLetras (event: KeyboardEvent) {
+    const charCode = event.key.charCodeAt(0);
+    // Permitir solo letras (mayúsculas y minúsculas) y espacio
+    if (
+      !(charCode >= 65 && charCode <= 90) &&  // Letras mayúsculas
+      !(charCode >= 97 && charCode <= 122) && // Letras minúsculas
+      charCode !== 32                         // Espacio
+    ) {
+      event.preventDefault();
+    }
+  }
+
 }
