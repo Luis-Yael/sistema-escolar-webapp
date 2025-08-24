@@ -1,0 +1,90 @@
+$bg: #fafafa;
+$ink: #111827;
+$ink-soft: #6b7280;
+$primary: #0b57d0;
+$border: #e5e7eb;
+
+/* HAMBURGUESA (solo móvil) */
+.hamburger {
+  position: fixed;
+  top: 12px; left: 12px;
+  z-index: 1101;
+  width: 40px; height: 40px;
+  border: none; border-radius: 8px;
+  background: #f3f4f6; color: $ink;
+  display: none;              // oculta por defecto (desktop)
+  align-items: center; justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,.05);
+}
+
+/* BACKDROP cuando el menú está abierto en móvil */
+.backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.28);
+  z-index: 1100;
+}
+
+/* SIDEBAR (desktop por defecto) */
+.sidebar {
+  height: 100dvh;
+  width: 240px;
+  background: $bg;
+  border-right: 1px solid $border;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  z-index: 1102; // por encima del backdrop
+  transition: transform .22s ease;
+
+  /* --- MÓVIL --- */
+  @media (max-width: 991.98px) {
+    position: fixed;
+    left: 0; top: 0;
+    transform: translateX(-100%); /* OCULTO por defecto */
+    /* ocupa toda la altura y empieza fuera de pantalla */
+
+    &.open-mobile {
+      transform: translateX(0);   /* VISIBLE al abrir */
+    }
+  }
+}
+
+/* Mostrar botón hamburguesa solo en móvil */
+@media (max-width: 991.98px) {
+  .hamburger { display: inline-flex; }
+}
+
+/* --- resto de estilos que ya tienes --- */
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px; margin-bottom: 16px;
+  .brand-logo { width: 28px; height: 30px; }
+  .brand-text { font-weight: 800; color: $ink; }
+}
+
+.nav {
+  display: flex; flex-direction: column; gap: 4px;
+
+  .nav-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px; border-radius: 8px;
+    color: $ink; text-decoration: none; transition: all .2s ease;
+
+    mat-icon { color: $ink-soft; }
+
+    &:hover { background: #fff; border: 1px solid $border; }
+    &.active {
+      background: #fff; border: 1px solid lighten($primary, 30%);
+      color: $primary; mat-icon { color: $primary; }
+    }
+  }
+
+  .logout {
+    margin-top: auto;
+    color: #b42318; font-weight: 600;
+    mat-icon { color: #b42318; }
+    &:hover { background: #fff0f0; border: 1px solid #ffdede; }
+  }
+}
