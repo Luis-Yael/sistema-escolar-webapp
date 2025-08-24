@@ -1,87 +1,80 @@
-
-.reg-shell {
-  display: grid;
-  gap: 20px;
-  padding: clamp(16px, 3vw, 28px);
-}
-
-/* Tarjeta de selección de rol */
-.role-card {
-  width: min(100%, 980px);
-  margin-inline: auto;
-
-  .role-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px 20px;
-    margin-top: 12px;
-  }
-
-  .role-pill {
-    padding: 6px 10px;
-  }
-}
-
-/* Botón regresar */
-.back-row {
-  width: min(100%, 980px);
-  margin-inline: auto;
+.wrapper{
+  width: 100vw;
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
-}
-
-.back-row button {
-  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  text-transform: none;
-  font-weight: 500;
-  border-radius: 8px;
-  padding-inline: 14px;
 }
 
-/* Área de formularios */
-.forms-area {
-  width: min(100%, 980px);
-  margin-inline: auto;
-}
-/* Contenedor con el mismo ancho que .role-card y .forms-area */
-.actions-row {
-  width: min(100%, 980px);
-  margin: 8px auto 0;       /* centra el contenedor como la card */
+.section-registro{
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  justify-content: flex-end; /* botón a la derecha */
-}
-
-/* Botón minimal y consistente con la UI */
-.back-btn {
-  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  gap: 6px;
-  text-transform: none;     /* no todo en mayúsculas */
-  font-weight: 500;
-  border-radius: 10px;      /* mismo radio suave */
-  padding-inline: 14px;
 }
 
-/* En móvil, que se vea cómodo y toque-friendly */
-@media (max-width: 576px) {
-  .back-btn {
-    width: auto;
-    padding-inline: 16px;
-  }
-}
-.actions-row {
-  width: min(100%, 980px);
-  margin: 8px auto 0;
+.header-registro{
+  width: 100vw;
+  height: 10vh;
   display: flex;
-  justify-content: flex-end;
-}
-
-.back-btn {
-  border-radius: 30%;    
-  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
 }
 
+.body-registro{
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.img-slider{
+  width: 900px;
+  height: 630px;
+}
+
+//Radio buttons
+.title-user{
+  font-size: 28px;
+  text-align: center;
+  font-family: Nexa-Bold;
+  letter-spacing: 2px;
+  color: #231F20;
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+.container{
+  width: 50vw;
+}
+::ng-deep .mat-mdc-radio-button .mdc-form-field {
+  color: #231F20;
+  font-family: Nexa;
+  font-size: 20px;
+}
+
+::ng-deep .mat-mdc-radio-button.mat-accent {
+  --mdc-radio-selected-focus-icon-color: #0092B8;
+  --mdc-radio-selected-hover-icon-color: #0092B8;
+  --mdc-radio-selected-icon-color: #0092B8;
+  --mdc-radio-selected-pressed-icon-color: #0092B8;
+  --mat-radio-ripple-color: #000;
+  --mat-radio-checked-ripple-color: #0092B8;
+}
+
+::ng-deep .mdc-radio {
+  display: inline-block;
+  position: relative;
+  flex: 0 0 auto;
+  box-sizing: content-box;
+  width: 20px;
+  height: 28px!important;
+  cursor: pointer;
+  will-change: opacity,transform,border-color,color;
+}
