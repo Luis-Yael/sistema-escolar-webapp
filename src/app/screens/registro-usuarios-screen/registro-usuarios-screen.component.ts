@@ -6,6 +6,7 @@ import { AdministradoresService } from 'src/app/services/administradores.service
 import { AlumnosService } from 'src/app/services/alumnos.service';
 import { FacadeService } from 'src/app/services/facade.service';
 import { MaestrosService } from 'src/app/services/maestros.service';
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-registro-usuarios-screen',
@@ -96,5 +97,8 @@ export class RegistroUsuariosScreenComponent implements OnInit{
       this.isMaestro = true;
       this.tipo_user = "maestro"
     }
+  }
+   goBack() {
+    this.location.back();
   }
 }

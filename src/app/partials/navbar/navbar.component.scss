@@ -1,32 +1,44 @@
+/* Contenedor general */
 .wrapper{
-  width: 100vw;
-  //height: 100vh;
+  width: 100%;
 }
+
+/* Fuerza extremos separados dentro de la navbar */
+.navbar .container-fluid{
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* brand a la izq, icono a la der */
+  gap: .75rem;
+}
+
+/* Colores */
 .bg-light{
-  background-color: #003B5C!important;
+  background-color: #003B5C !important;
 }
 
+/* Navbar reset */
 .navbar{
-  padding: 0 0 0 0!important;
+  padding: 0 !important;
 }
 
+/* Brand (título): a la izquierda, sin centrado forzado */
 .navbar-brand{
   padding-left: 20px;
   font-size: 28px;
   font-family: Nexa;
-  text-align: center;
-  opacity: 1;
   color: #FFFFFF;
-  margin: 0 0 0 0!important;
+  margin: 0 !important;
+  text-align: left; /* evita centrado */
 }
+
+/* Links del menú */
 .nav-link{
   font-size: 20px;
   font-family: Nexa;
-  text-align: center;
-  opacity: 1;
   font-weight: bold;
   color: #FFFFFF;
-  margin: 0 0 0 0!important;
+  margin: 0 !important;
+  text-align: left;
 }
 
 li a {
@@ -36,32 +48,32 @@ li a {
   text-transform: capitalize;
 }
 
-/* Change the link color on hover */
+/* Hover */
 li a:hover {
   background-color: #0092B8;
   color: #FFFFFF;
   margin: 0;
 }
 
+/* Espaciado vertical de links */
 .navbar-expand-lg .navbar-nav .nav-link {
-  padding-top: 1.2rem;
-  padding-bottom: 1.2rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 1.2rem 1rem;
 }
-.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
   font-size: 20px;
   font-family: Nexa;
-  text-align: center;
-  opacity: 1;
   font-weight: bold;
   color: #FFFFFF;
 }
+
 .active {
   background-color: #03aed8;
-  margin: 0 0 0 0!important;
+  margin: 0 !important;
 }
 
+/* Icono usuario */
 .bi-person-circle{
   font-size: 20pt;
   color: #FFFFFF;
@@ -70,13 +82,29 @@ li a:hover {
   font-size: 15pt;
   color: #FFFFFF;
 }
-.dropdown-menu[data-bs-popper] {
-  right: 0!important;
+
+/* En Bootstrap 5, esto alinea el menú del dropdown a la derecha */
+.dropdown-menu-end{
+  right: 0;
   left: auto;
 }
-.navbar-toggler-icon{
-  color: #FFFFFF;
+
+/* Toggler visible en fondo oscuro */
+.navbar-toggler{
+  border-color: rgba(255,255,255,.55);
 }
-.navbar-toggler-icon {
+.navbar-toggler-icon{
+  filter: invert(1); /* lo vuelve blanco sobre fondo oscuro */
   vertical-align: 0;
+}
+
+/* En móvil, que el bloque derecho quede al final del row */
+@media (max-width: 991.98px){
+  .navbar .container-fluid{
+    flex-wrap: wrap; /* permite que el colapsable baje */
+  }
+  .navbar-brand{
+    padding-left: .5rem;
+    font-size: 22px; /* un poco más compacto */
+  }
 }
