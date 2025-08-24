@@ -40,6 +40,15 @@ import { MaestrosScreenComponent } from './screens/maestros-screen/maestros-scre
 import { EliminarUserModalComponent } from './modals/eliminar-user-modal/eliminar-user-modal.component';
 import { GraficasScreenComponent } from './screens/graficas-screen/graficas-screen.component';
 import { NgChartsModule } from 'ng2-charts';
+import { SidebarComponent } from './partials/sidebar/sidebar.component';
+import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
+
+// Material
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -55,7 +64,10 @@ import { NgChartsModule } from 'ng2-charts';
     AlumnosScreenComponent,
     MaestrosScreenComponent,
     EliminarUserModalComponent,
-    GraficasScreenComponent
+    GraficasScreenComponent,
+    SidebarComponent,
+    AuthLayoutComponent,
+    DashboardLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +88,12 @@ import { NgChartsModule } from 'ng2-charts';
     MatTableModule,
     MatPaginatorModule,
     MatDialogModule,
-    NgChartsModule
+    NgChartsModule,
+    MatCardModule,
+    MatButtonToggleModule,
+    MatButtonToggleModule,
+    MatProgressBarModule,
+
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},

@@ -1,273 +1,258 @@
-/*Todos los estilos para desktop*/
-//Horizontal full pantalla
-@media (min-width: 960px) and (orientation: landscape) {
-  .wrapper{
-    width: 100vw;
-    height: 100vh;
-    //Flex
+/* ===== Base: móvil / tablets chicas (mobile-first) ===== */
+
+:host {
+  display: block;
+  overflow-x: hidden; /* evita desbordes horizontales */
+}
+
+/* Wrapper en columna para móvil */
+.wrapper{
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.logo-buap,
+.logo-fcc {
+  height: auto;     /* conserva proporción */
+  display: block;   /* evita empujes raros en inline */
+}
+
+/* Sección izquierda (logos) encima en móvil */
+.section-left{
+  width: 100%;
+  background-image: url("/assets/images/login-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;   /* centrados en móvil por defecto */
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 1rem;
+}
+
+/* Sección derecha (form) debajo en móvil */
+.section-right{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;        /* centrado en móvil */
+  gap: 1.5rem;
+  padding: 1rem 0 2rem;
+}
+
+/* Logos fluidos y contenidos (evita gigantes) */
+.logo-buap,
+.logo-fcc{
+  width: 100%;
+  max-width: 180px; /* móvil: compactos */
+  height: auto;
+}
+
+/* Tarjeta y contenidos: que entren en pantallas pequeñas */
+.card{
+  width: 100%;
+  max-width: 360px; /* móvil */
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: -8px 0px 0px #0000001A;
+  border: 2px solid #3E3E3E;
+  opacity: 1;
+}
+
+.card-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 2rem; /* un poco menos en móvil */
+}
+
+.title{
+  font-size: 32px; /* conservamos tu tamaño */
+  text-align: center;
+  font-family: Nexa-Bold;
+  letter-spacing: 0px;
+  color: #231F20;
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+/* Inputs se adaptan al ancho disponible */
+input{
+  width: 100%;
+  max-width: 296px;  /* tu ancho en desktop como límite superior */
+  height: 48px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 2px solid #3E3E3E;
+  opacity: 1;
+}
+
+.input-group-text{
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 2px solid #3E3E3E;
+  opacity: 1;
+  border-left: none !important;
+  font-size: 1rem !important;
+  height: 48px; /* alinea con el alto del input */
+  display: flex;
+  align-items: center;
+}
+
+.pwd{
+  border-right: none !important;
+}
+
+.form-check-label{
+  text-align: left;
+  font-family: Nexa-Bold;
+  font-size: 16px;
+  letter-spacing: 0px;
+  color: #0092B8;
+  opacity: 1;
+  cursor: pointer;
+}
+
+/* Botón: ocupa ancho disponible en móvil, sin perder estética */
+.btn-primary{
+  width: 100%;
+  max-width: 208px; /* tu ancho objetivo */
+  height: 48px;
+  background-color: #0092B8 !important;
+  border-color: #0092B8 !important;
+  border-radius: 8px !important;
+  opacity: 1;
+  text-align: center;
+  font-family: Nexa-Bold;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  background-color: #017895 !important;
+  border-color: #017895 !important;
+}
+
+.bi{ cursor: pointer; }
+
+/* ===== Móvil en portrait (ajustes finos) ===== */
+@media (max-width: 961px) and (orientation: portrait) {
+
+  .section-left{
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    /* una sola fila con espacio entre logos */
+    flex-wrap: nowrap;
+    justify-content: space-between;
     align-items: center;
+    gap: .5rem;
+    background-image: url("/assets/images/login-bg.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: top center;
+    padding: 40px 12px;
+  }
+
+  .section-right{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* empuja un poco hacia abajo el formulario para que no quede “pegado arriba” */
+    padding: clamp(16px, 5vh, 48px) 12px 24px;
+    gap: 1.25rem;
+  }
+
+  .logo-buap,
+  .logo-fcc {
+    height: auto;
+    display: block;
+    object-fit: contain; /* evita deformación */
+  }
+
+  .logo-buap  { max-width: 34vw; max-height: 64px; }
+  .logo-fcc   { max-width: 58vw; max-height: 64px; }
+
+  .card{
+    width: 100%;
+    max-width: 25rem;
+    /* altura flexible para no cortar contenido */
+    min-height: 25.813rem;
+    margin: 0 auto; /* centrada */
+  }
+
+  .title{
+    font-size: 28px;
+  }
+}
+
+/* XS: teléfonos muy pequeños (iPhone SE / 360–420px) */
+@media (max-width: 420px) {
+  .section-left{
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 8px 10px;
+    gap: .4rem;
+  }
+  .logo-buap  { max-width: 36vw; max-height: 52px; }
+  .logo-fcc   { max-width: 60vw; max-height: 52px; }
+
+  /* un poco más de aire arriba para centrar mejor el conjunto en XS */
+  .section-right{ padding-top: clamp(20px, 6vh, 60px); }
+}
+
+/* ===== Desktop / Laptop (PC): dos columnas y centrado vertical ===== */
+@media (min-width: 960px) {
+  .wrapper{
+    /* CLAVE: volvemos al layout horizontal y centramos verticalmente */
+    flex-direction: row;
+    align-items: stretch;   /* ambas mitades ocupan todo el alto */
   }
 
   .section-left{
     width: 50%;
-    height: 100%;
-    //Flex
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center;  /* logos centrados verticalmente */
     align-items: center;
     gap: 3rem;
-    //Fondo de la imagen
     background-image: url("/assets/images/login-bg.png");
-    //background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding: 2rem 0;
   }
 
   .section-right{
     width: 50%;
-    height: 100%;
-    //Flex
+    min-height: 100vh;         /* asegura centrado vertical del card */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center;   /* <<< centrado vertical en PC */
     align-items: center;
     gap: 3rem;
+    padding: 0;                /* sin padding extra que lo empuje arriba */
   }
 
-  .logo-buap{
-    width: 280px;
-    height: 350px;
-  }
+  /* Logos más grandes en desktop, pero controlados */
+  .logo-buap{ width: 100%; max-width: 280px; height: auto; }
+  .logo-fcc { width: 100%; max-width: 500px; height: auto; }
 
-  .logo-fcc{
-    width: 500px;
-    height: 180px;
-  }
-
-  .title{
-    font-size: 32px;
-    text-align: center;
-    font-family: Nexa-Bold;
-    letter-spacing: 0px;
-    color: #231F20;
-    text-transform: uppercase;
-    opacity: 1;
-  }
   .card{
     width: 27rem;
-    height: 27.813rem;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: -8px 0px 0px #0000001A;
-    border: 2px solid #3E3E3E;
-    opacity: 1;
+    max-width: 27rem;
   }
 
-  .card-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding-top: 3rem;
-  }
+  .card-body{ padding-top: 3rem; }
 
-  input{
-    width: 296px;
-    height: 48px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border: 2px solid #3E3E3E;
-    opacity: 1;
-  }
-
-  .input-group-text{
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border: 2px solid #3E3E3E;
-    opacity: 1;
-    border-left: none!important;
-    font-size: 1rem!important;
-  }
-
-  .pwd{
-    border-right: none!important;
-  }
-
-  .form-check-label{
-    text-align: left;
-    font-family: Nexa-Bold;
-    font-size: 16px;
-    letter-spacing: 0px;
-    color: #0092B8;
-    opacity: 1;
-    cursor: pointer;
-  }
-
-  .btn-primary{
-    width: 208px;
-    height: 48px;
-    background-color: #0092B8!important;
-    border-color: #0092B8!important;
-    border-radius: 8px!important;
-    opacity: 1;
-    //Fuente
-    text-align: center;
-    font-family: Nexa-Bold;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 0px;
-    color: #FFFFFF;
-    opacity: 1;
-  }
-
-  .btn-primary:hover {
-    background-color: #017895!important;
-    border-color: #017895!important;
-
-  }
-
-  .bi{
-    cursor: pointer;
-  }
+  input{ width: 296px; }
+  .btn-primary{ width: 208px; }
 }
-
-//Vertical full pantalla
-@media (max-width: 961px) and (orientation: portrait) {
-  .wrapper{
-    width: 100vw;
-    height: 100vh;
-    //Flex
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-  }
-
-  .section-left{
-    width: 100%;
-    height: 50%;
-    //Flex
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-    //Fondo
-    //Fondo de la imagen
-    background-image: url("/assets/images/login-bg.png");
-    //background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-
-  .section-right{
-    width: 100%;
-    height: 50%;
-    //Flex
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-  }
-  .logo-buap{
-    width: 150px;
-    height: 200px;
-  }
-
-  .logo-fcc{
-    width: 410px;
-    height: 130px;
-  }
-
-  .title{
-    font-size: 32px;
-    text-align: center;
-    font-family: Nexa-Bold;
-    letter-spacing: 0px;
-    color: #231F20;
-    text-transform: uppercase;
-    opacity: 1;
-  }
-
-  .card{
-    width: 25rem;
-    height: 25.813rem;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: -8px 0px 0px #0000001A;
-    border: 2px solid #3E3E3E;
-    opacity: 1;
-  }
-
-  .card-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding-top: 3rem;
-  }
-
-  input{
-    width: 296px;
-    height: 48px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border: 2px solid #3E3E3E;
-    opacity: 1;
-  }
-
-  .input-group-text{
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border: 2px solid #3E3E3E;
-    opacity: 1;
-    border-left: none!important;
-    font-size: 1rem!important;
-  }
-
-  .pwd{
-    border-right: none!important;
-  }
-
-  .form-check-label{
-    text-align: left;
-    font-family: Nexa-Bold;
-    font-size: 16px;
-    letter-spacing: 0px;
-    color: #0092B8;
-    opacity: 1;
-    cursor: pointer;
-  }
-
-  .btn-primary{
-    width: 208px;
-    height: 48px;
-    background-color: #0092B8!important;
-    border-color: #0092B8!important;
-    border-radius: 8px!important;
-    opacity: 1;
-    //Fuente
-    //Fuente
-    text-align: center;
-    font-family: Nexa-Bold;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 0px;
-    color: #FFFFFF;
-    opacity: 1;
-  }
-
-  .btn-primary:hover {
-    background-color: #017895!important;
-    border-color: #017895!important;
-
-  }
-
-  .bi{
-    cursor: pointer;
-  }
-}
-
