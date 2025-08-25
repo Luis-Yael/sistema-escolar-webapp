@@ -19,8 +19,8 @@
   >
     <nav>
       <ul class="sidebar-list">
-        <!-- Inicio - Available for all users -->
-        <li *ngIf="canSeeStudentItems()" routerLink="/home" routerLinkActive="active" (click)="closeSidebar()">
+        <!-- Inicio - Available for admin and teachers only -->
+        <li *ngIf="canSeeHomeItem()" routerLink="/home" routerLinkActive="active" (click)="closeSidebar()">
           <mat-icon>home</mat-icon>
           <span>Inicio</span>
         </li>

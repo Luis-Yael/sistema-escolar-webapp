@@ -83,4 +83,9 @@ export class SidebarComponent implements OnInit {
   canSeeStudentItems(): boolean {
     return this.isAdmin() || this.isTeacher() || this.isStudent();
   }
+
+  // Check if user can see Inicio (admin and teacher only, not student)
+  canSeeHomeItem(): boolean {
+    return this.isAdmin() || this.isTeacher();
+  }
 }
