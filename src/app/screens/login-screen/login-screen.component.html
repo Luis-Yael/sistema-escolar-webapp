@@ -1,36 +1,53 @@
 <section class="login">
   <div class="wrapper">
+    <!-- Sección izquierda: logos -->
     <div class="section-left">
-      <img src="/assets/images/Buap.png" class="logo-buap">
-      <img src="/assets/images/FCCBuap.png" class="logo-fcc">
+      <img src="/assets/images/Buap.png" alt="Logo BUAP" class="logo-buap" />
+      <img src="/assets/images/FCCBuap.png" alt="Logo FCC" class="logo-fcc" />
     </div>
+    <!-- Sección derecha: formulario -->
     <div class="section-right">
       <div class="card">
         <div class="card-body">
           <h3 class="title">Inicio de Sesión</h3>
           <div class="container-inputs">
             <div class="pt-3 mb-3">
-              <input type="email" [(ngModel)]="username" class="form-control" id="email" placeholder="Correo electrónico">
+              <input
+                type="email"
+                [(ngModel)]="username"
+                class="form-control"
+                id="email"
+                placeholder="Correo electrónico"
+                autocomplete="username"
+              />
               <div *ngIf="errors.username" class="invalid-feedback">{{ errors.username }}</div>
             </div>
             <div class="pt-3 mb-3">
               <div class="input-group input-group-merge">
-                <input type="{{type}}" [(ngModel)]="password" id="password" name="password_user" class="form-control pwd" placeholder="Contraseña" (keyup.enter)="login()">
-                <div class="input-group-text" id="show-password" data-password="false">
-                    <i *ngIf="type == 'password'" class="bi bi-eye-fill" (click)="showPassword()"></i>
-                    <i *ngIf="type == 'text'" class="bi bi-eye-slash-fill" (click)="showPassword()"></i>
+                <input
+                  [type]="type"
+                  [(ngModel)]="password"
+                  id="password"
+                  name="password_user"
+                  class="form-control pwd"
+                  placeholder="Contraseña"
+                  autocomplete="current-password"
+                  (keyup.enter)="login()"
+                />
+                <div class="input-group-text" (click)="showPassword()">
+                  <i [ngClass]="type == 'password' ? 'bi bi-eye-fill' : 'bi bi-eye-slash-fill'"></i>
                 </div>
               </div>
               <div *ngIf="errors.password" class="invalid-feedback">{{ errors.password }}</div>
             </div>
 
-            <div class="mb-3">
-              <label class="form-check-label" for="checkbox-signin">Olvidé mi contraseña</label>
+            <div class="mb-2 login-links">
+              <a (click)="router.navigate(['olvide-contrasena'])">Olvidé mi contraseña</a>
             </div>
 
             <div class="d-flex flex-column align-items-center mb-3 w-100" style="text-align: center;">
-              <button class="btn btn-primary" type="submit" (click)="login()" [disabled]="load">Iniciar sesión</button>
-              <label class="form-check-label pt-3" for="checkbox-signin" (click)="registrar()">Registrarse</label>
+              <button class="btn btn-primary" type="button" (click)="login()" [disabled]="load">Iniciar sesión</button>
+              <a class="login-link-registro pt-3" (click)="registrar()">Registrarse</a>
             </div>
           </div>
         </div>

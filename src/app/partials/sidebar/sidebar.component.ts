@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import { FacadeService } from 'src/app/services/facade.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,22 +7,30 @@ import { FacadeService } from 'src/app/services/facade.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
-  @Input() rol: 'administrador' | 'maestro' | 'alumno' | string = '';
-  @Input() token: string | null = null;
+  mobileOpen = false;
+  isMobileView = window.innerWidth < 900;
 
-  collapsed = false;     // mini–sidebar en desktop
-  mobileOpen = false;    // sidebar visible en móvil
+  constructor(private router: Router) {}
 
-  constructor(private router: Router, private facade: FacadeService) {}
+  @HostListener('window:resize')
+  onResize() {
+    this.isMobileView = window.innerWidth < 900;
+    if (!this.isMobileView) {
+      this.mobileOpen = false;
+    }
+  }
 
-closeOnMobile() {
-  if (window.innerWidth < 992) this.mobileOpen = false;
-}
+  toggleSidebar() {
+    this.mobileOpen = !this.mobileOpen;
+  }
 
+  closeSidebar() {
+    this.mobileOpen = false;
+  }
 
   logout() {
-    // tu lógica actual
-    this.facade.logout(); // si ya tienes algo similar
-    this.router.navigate(['/']);
+    localStorage.clear();
+    this.router.navigate(['/login']);
+    this.closeSidebar();
   }
 }

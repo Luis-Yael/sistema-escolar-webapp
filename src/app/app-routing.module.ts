@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
-
+// Screens
 import { LoginScreenComponent } from './screens/login-screen/login-screen.component';
 import { RegistroUsuariosScreenComponent } from './screens/registro-usuarios-screen/registro-usuarios-screen.component';
 import { HomeScreenComponent } from './screens/home-screen/home-screen.component';
@@ -12,37 +10,37 @@ import { AlumnosScreenComponent } from './screens/alumnos-screen/alumnos-screen.
 import { MaestrosScreenComponent } from './screens/maestros-screen/maestros-screen.component';
 import { GraficasScreenComponent } from './screens/graficas-screen/graficas-screen.component';
 
+// Layouts
+import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
+
 const routes: Routes = [
-  // Layout de autenticación (SIN sidebar)
   {
     path: '',
     component: AuthLayoutComponent,
     children: [
-      { path: '', component: LoginScreenComponent, pathMatch: 'full' },
-      { path: 'registro-usuarios', component: RegistroUsuariosScreenComponent, pathMatch: 'full' },
-      { path: 'registro-usuarios/:rol/:id', component: RegistroUsuariosScreenComponent, pathMatch: 'full' },
-    ],
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginScreenComponent }
+    ]
   },
-
-  // Layout del dashboard (CON sidebar)
   {
     path: '',
     component: DashboardLayoutComponent,
     children: [
-      { path: 'home', component: HomeScreenComponent, pathMatch: 'full' },
-      { path: 'alumnos', component: AlumnosScreenComponent, pathMatch: 'full' },
-      { path: 'maestros', component: MaestrosScreenComponent, pathMatch: 'full' },
-      { path: 'administrador', component: AdminScreenComponent, pathMatch: 'full' },
-      { path: 'graficas', component: GraficasScreenComponent, pathMatch: 'full' },
-    ],
+      { path: 'home', component: HomeScreenComponent },
+      { path: 'registro-usuarios', component: RegistroUsuariosScreenComponent },
+      { path: 'admin', component: AdminScreenComponent },
+      { path: 'alumnos', component: AlumnosScreenComponent },
+      { path: 'maestros', component: MaestrosScreenComponent },
+      { path: 'graficas', component: GraficasScreenComponent }
+    ]
   },
-
-  // (Opcional) 404
-  // { path: '**', redirectTo: '' }
+  // fallback route
+  { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

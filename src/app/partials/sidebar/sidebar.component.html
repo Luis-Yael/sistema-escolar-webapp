@@ -1,46 +1,56 @@
-<!-- Botón hamburguesa: SOLO en móvil -->
-<button class="hamburger d-lg-none"
-        type="button"
-        (click)="mobileOpen = true"
-        aria-label="Abrir menú">
+<!-- Minimalist Hamburger button for mobile -->
+<button
+  *ngIf="isMobileView && !mobileOpen"
+  mat-icon-button
+  class="sidebar-toggle"
+  (click)="toggleSidebar()"
+  aria-label="Abrir menú"
+>
   <mat-icon>menu</mat-icon>
 </button>
 
-<!-- Capa oscura cuando el menú está abierto (móvil) -->
-<div class="backdrop" *ngIf="mobileOpen" (click)="mobileOpen = false"></div>
-
-<aside class="sidebar" [class.open-mobile]="mobileOpen">
-  <!-- Encabezado -->
-  <div class="brand">
-    <img class="brand-logo" src="/assets/images/Buap.png" alt="BUAP"
-         onerror="this.src='/assets/buap-logo.png'">
-    <span class="brand-text">BUAP</span>
-  </div>
-
-  <!-- Menú de navegación -->
-  <nav class="nav">
-    <a class="nav-item" routerLink="/home" routerLinkActive="active" (click)="closeOnMobile()">
-      <mat-icon>home</mat-icon><span>Inicio</span>
-    </a>
-
-    <a class="nav-item" *ngIf="rol !== 'alumno'" routerLink="/alumnos" routerLinkActive="active" (click)="closeOnMobile()">
-      <mat-icon>groups</mat-icon><span>Alumnos</span>
-    </a>
-
-    <a class="nav-item" *ngIf="rol !== 'maestro' && rol !== 'alumno'" routerLink="/maestros" routerLinkActive="active" (click)="closeOnMobile()">
-      <mat-icon>person_pin</mat-icon><span>Maestros</span>
-    </a>
-
-    <a class="nav-item" routerLink="/#" routerLinkActive="active" (click)="closeOnMobile()">
-      <mat-icon>event</mat-icon><span>Eventos Académicos</span>
-    </a>
-
-    <a class="nav-item" routerLink="/graficas" routerLinkActive="active" (click)="closeOnMobile()">
-      <mat-icon>insights</mat-icon><span>Gráficas</span>
-    </a>
-
-    <a class="nav-item logout" *ngIf="token" (click)="logout()">
-      <mat-icon>logout</mat-icon><span>Cerrar Sesión</span>
-    </a>
-  </nav>
-</aside>
+<mat-sidenav-container class="sidebar-container">
+  <mat-sidenav
+    [opened]="!isMobileView || mobileOpen"
+    [mode]="isMobileView ? 'over' : 'side'"
+    class="sidebar"
+    (closedStart)="closeSidebar()"
+    [disableClose]="!isMobileView"
+  >
+    <nav>
+      <ul class="sidebar-list">
+        <li routerLink="/home" routerLinkActive="active" (click)="closeSidebar()">
+          <mat-icon>home</mat-icon>
+          <span>Inicio</span>
+        </li>
+        <li routerLink="/registro-usuarios" routerLinkActive="active" (click)="closeSidebar()">
+          <mat-icon>person_add</mat-icon>
+          <span>Registro</span>
+        </li>
+        <li routerLink="/admin" routerLinkActive="active" (click)="closeSidebar()">
+          <mat-icon>admin_panel_settings</mat-icon>
+          <span>Admins</span>
+        </li>
+        <li routerLink="/alumnos" routerLinkActive="active" (click)="closeSidebar()">
+          <mat-icon>school</mat-icon>
+          <span>Alumnos</span>
+        </li>
+        <li routerLink="/maestros" routerLinkActive="active" (click)="closeSidebar()">
+          <mat-icon>people</mat-icon>
+          <span>Maestros</span>
+        </li>
+        <li routerLink="/graficas" routerLinkActive="active" (click)="closeSidebar()">
+          <mat-icon>bar_chart</mat-icon>
+          <span>Gráficas</span>
+        </li>
+      </ul>
+      <button mat-flat-button color="warn" class="logout-btn" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Cerrar sesión</span>
+      </button>
+    </nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- Main content goes here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
