@@ -124,3 +124,20 @@ nav {
     box-shadow: 2px 0 8px rgba(0,0,0,0.09);
   }
 }
+.sidebar-container {
+  height: 100%;
+  min-height: 100vh;
+  background: transparent;
+}
+
+.sidebar {
+  width: 200px;
+  background: $sidebar-bg;
+  color: $text-color;
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  height: 100%; // <--- ¡No uses height: 100vh aquí!
+}
+

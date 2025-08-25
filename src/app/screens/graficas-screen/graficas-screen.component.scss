@@ -1,56 +1,163 @@
-.wrapper{
-  width: 100vw;
-  height: 100vh;
+$sidebar-width: 200px; // Ajusta a tu sidebar real
+
+.wrapper {
+  min-height: 100vh;
+  background: #fff;
+  // Compensa el sidebar solo en desktop
+  margin-left: $sidebar-width;
+  transition: margin-left 0.3s;
 }
 
-.section-home{
+@media (max-width: 900px) {
+  .wrapper {
+    margin-left: 0;
+  }
+}
+
+.section-home {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
+  align-items: stretch;
 }
 
-.header-home{
+.body-home {
+  width: 100%;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.container {
+  width: 100%;
+  max-width: 100vw;
+  margin: 0 auto;
+  padding: 0 2vw;
+  box-sizing: border-box;
+}
+
+.title-perfil {
+  margin-left: 0;
+  font-size: 2.3rem;
+  text-align: left;
+  font-family: Nexa-Bold;
+  color: #231F20;
+  text-transform: capitalize;
+}
+
+.title-table {
+  margin-left: 0;
+  font-size: 1.5rem;
+  text-align: left;
+  font-family: Nexa-Bold;
+  color: #231F20;
+  text-transform: capitalize;
+}
+
+/* Cards azules bien centradas */
+.alert-primary {
+  border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1em;
+  padding: 0.9em 0.7em;
+  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Secciones de gráficas */
+.graph-section,
+.user-section {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+  gap: 2vw;
   width: 100%;
+  justify-content: center;
+  align-items: stretch;
+  margin-bottom: 2rem;
 }
 
-.body-home{
+.graph {
+  flex: 1 1 340px;
+  min-width: 0;
+  max-width: 600px;
+  padding: 1.2em 0.5em;
+  box-sizing: border-box;
+  background: #fff;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-  height: 90vh;
-}
-.container{
-  max-width: 90vw;
-}
-.title-perfil{
-  margin-left: 3rem;
-  font-size: 32px;
-  text-align: left;
-  font-family: Nexa-Bold;
-  letter-spacing: 0px;
-  color: #231F20;
-  text-transform: capitalize;
-  opacity: 1;
-}
-.title-table{
-  margin-left: 3rem;
-  font-size: 28px;
-  text-align: left;
-  font-family: Nexa-Bold;
-  letter-spacing: 0px;
-  color: #231F20;
-  text-transform: capitalize;
-  opacity: 1;
+  align-items: center;
+  justify-content: center;
 }
 
-.graph{
-  text-align: center!important;
+/* Canvas adaptativo */
+canvas {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 220px;
+  max-height: 400px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Tablet y móvil: apila y ocupa todo el ancho */
+@media (max-width: 1000px) {
+  .graph-section,
+  .user-section {
+    flex-direction: column;
+    gap: 1.2em;
+    align-items: center;
+  }
+  .graph {
+    max-width: 96vw;
+    width: 96vw;
+    padding: 0.7em 0.1em;
+  }
+  .container {
+    max-width: 100vw;
+    padding: 0 1vw;
+  }
+  .title-perfil, .title-table {
+    font-size: 1.12rem;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .title-perfil, .title-table {
+    font-size: 0.95rem;
+    margin-left: 0;
+  }
+  .graph-section,
+  .user-section {
+    gap: 0.8em;
+  }
+  .graph {
+    min-width: 0;
+    max-width: 99vw;
+    width: 99vw;
+    padding: 0.3em 0;
+  }
+  .alert-primary {
+    font-size: 0.92em;
+    padding: 0.5em 0.2em;
+    margin-bottom: 0.8em;
+  }
+  .container {
+    min-width: 100vw;
+    max-width: 100vw;
+    padding: 0;
+  }
+}
+
+/* Evita desbordamientos horizontales estéticos */
+@media (max-width: 400px) {
+  .graph {
+    max-width: 100vw;
+    width: 100vw;
+    padding: 0.1em 0;
+  }
 }
