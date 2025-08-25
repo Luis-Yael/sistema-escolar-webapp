@@ -20,7 +20,9 @@ const routes: Routes = [
     component: AuthLayoutComponent,
     children: [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
-      { path: 'login', component: LoginScreenComponent }
+      { path: 'login', component: LoginScreenComponent },
+      { path: 'registro-usuarios', component: RegistroUsuariosScreenComponent },
+      { path: 'registro-usuarios/:rol/:id', component: RegistroUsuariosScreenComponent }
     ]
   },
   {
@@ -28,8 +30,8 @@ const routes: Routes = [
     component: DashboardLayoutComponent,
     children: [
       { path: 'home', component: HomeScreenComponent },
-      { path: 'registro-usuarios', component: RegistroUsuariosScreenComponent },
       { path: 'admin', component: AdminScreenComponent },
+      { path: 'administrador', component: AdminScreenComponent }, // Keep legacy route
       { path: 'alumnos', component: AlumnosScreenComponent },
       { path: 'maestros', component: MaestrosScreenComponent },
       { path: 'graficas', component: GraficasScreenComponent }

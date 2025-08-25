@@ -21,23 +21,29 @@
     <mat-card-content>
       <div class="role-row">
         <mat-radio-group
-          aria-label="Tipo de usuario"
-          [(ngModel)]="user.tipo_usuario"
-          (change)="radioChange($event)"
-          [disabled]="editar">
+  aria-label="Tipo de usuario"
+  [(ngModel)]="user.tipo_usuario"
+  (change)="radioChange($event)"
+  [disabled]="editar || facadeService.getUserGroup() === 'maestro'">
 
-          <mat-radio-button class="role-pill" value="administrador">
-            <mat-icon class="me-1" fontIcon="admin_panel_settings"></mat-icon> Administrador
-          </mat-radio-button>
+  <mat-radio-button
+    class="role-pill"
+    value="administrador"
+    *ngIf="facadeService.getUserGroup() !== 'maestro'">
+    <mat-icon class="me-1" fontIcon="admin_panel_settings"></mat-icon> Administrador
+  </mat-radio-button>
 
-          <mat-radio-button class="role-pill" value="alumno">
-            <mat-icon class="me-1" fontIcon="school"></mat-icon> Alumno
-          </mat-radio-button>
+  <mat-radio-button class="role-pill" value="alumno">
+    <mat-icon class="me-1" fontIcon="school"></mat-icon> Alumno
+  </mat-radio-button>
 
-          <mat-radio-button class="role-pill" value="maestro">
-            <mat-icon class="me-1" fontIcon="person"></mat-icon> Maestro
-          </mat-radio-button>
-        </mat-radio-group>
+  <mat-radio-button
+    class="role-pill"
+    value="maestro"
+    *ngIf="facadeService.getUserGroup() !== 'maestro'">
+    <mat-icon class="me-1" fontIcon="person"></mat-icon> Maestro
+  </mat-radio-button>
+</mat-radio-group>
       </div>
     </mat-card-content>
 

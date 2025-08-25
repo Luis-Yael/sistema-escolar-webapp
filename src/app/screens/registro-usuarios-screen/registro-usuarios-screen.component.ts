@@ -31,7 +31,7 @@ export class RegistroUsuariosScreenComponent implements OnInit{
     private location : Location,
     public activatedRoute: ActivatedRoute,
     private router: Router,
-    private facadeService: FacadeService,
+    public facadeService: FacadeService,
     private administradoresService: AdministradoresService,
     private maestrosService: MaestrosService,
     private alumnosService: AlumnosService
@@ -43,6 +43,14 @@ export class RegistroUsuariosScreenComponent implements OnInit{
       this.rol = this.activatedRoute.snapshot.params['rol'];
       console.log("Rol detect: ", this.rol);
     }
+     const role = this.facadeService.getUserGroup();
+  if (role === 'maestro') {
+    this.isAdmin = false;
+    this.isMaestro = false;
+    this.isAlumno = true;
+    this.tipo_user = 'alumno';
+    this.user.tipo_usuario = 'alumno';
+  }
 
     //El if valida si existe un parámetro en la URL
     if(this.activatedRoute.snapshot.params['id'] != undefined){

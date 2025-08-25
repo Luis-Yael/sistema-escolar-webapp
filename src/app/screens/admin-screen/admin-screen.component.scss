@@ -43,6 +43,16 @@
   text-transform: capitalize;
   opacity: 1;
 }
+/* Scroll horizontal SOLO para la tabla */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  min-height: 1px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.07);
+}
 
 thead{
   border-bottom: #231F20;

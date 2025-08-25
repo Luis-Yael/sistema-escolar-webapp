@@ -73,6 +73,16 @@ nav {
   }
 }
 
+// Special styling for non-functional items
+.sidebar-list li.eventos-academicos {
+  opacity: 0.8;
+  
+  &:hover {
+    background: rgba($sidebar-hover, 0.5);
+    opacity: 1;
+  }
+}
+
 .logout-btn {
   margin: 1.2rem;
   width: calc(100% - 2.4rem);
