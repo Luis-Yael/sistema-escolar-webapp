@@ -2,9 +2,7 @@ $sidebar-width: 200px; // Ajusta a tu sidebar real
 
 .wrapper {
   min-height: 100vh;
-  background: #fff;
   // Compensa el sidebar solo en desktop
-  margin-left: $sidebar-width;
   transition: margin-left 0.3s;
 }
 
@@ -42,7 +40,6 @@ $sidebar-width: 200px; // Ajusta a tu sidebar real
   font-size: 2.3rem;
   text-align: left;
   font-family: Nexa-Bold;
-  color: #231F20;
   text-transform: capitalize;
 }
 
@@ -51,7 +48,6 @@ $sidebar-width: 200px; // Ajusta a tu sidebar real
   font-size: 1.5rem;
   text-align: left;
   font-family: Nexa-Bold;
-  color: #231F20;
   text-transform: capitalize;
 }
 
@@ -86,7 +82,6 @@ $sidebar-width: 200px; // Ajusta a tu sidebar real
   max-width: 600px;
   padding: 1.2em 0.5em;
   box-sizing: border-box;
-  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;

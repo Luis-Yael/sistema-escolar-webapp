@@ -1,3 +1,52 @@
+
+// PALETTE SUPPORT FOR ALL MODULES
+.dashboard-content,
+.table-responsive,
+table,
+.mat-elevation-z8,
+.table {
+  background: var(--table-bg, #fff) !important;
+  color: var(--text-main, #222) !important;
+}
+
+.mat-mdc-header-cell,
+th {
+  background: var(--table-header-bg, #cfe2ff) !important;
+  color: var(--text-main, #222) !important;
+}
+
+// DARK PALETTE VARIABLES (Elegant)
+
+[data-theme="dark"] {
+  --table-bg: #181a1b;
+  --table-header-bg: #222326;
+  --table-header-border: #2c2d2f;
+  --text-main: #f5f6fa;
+  --sidebar-bg: #181a1b;
+  --sidebar-active-bg: #222326;
+  --sidebar-text: #d1d1d1;
+  --primary: #3a7afe;
+  --secondary: #bdbdbd;
+  --danger: #e57373;
+  --success: #81c784;
+  --accent: #757575;
+}
+
+// LIGHT PALETTE VARIABLES (Modern)
+[data-theme="light"] {
+  --table-bg: #fff;
+  --table-header-bg: #cfe2ff;
+  --table-header-border: #231F20;
+  --text-main: #222;
+  --sidebar-bg: #eaf1fb;
+  --sidebar-active-bg: #cfe2ff;
+  --sidebar-text: #222;
+  --primary: #1976d2;
+  --secondary: #ff9800;
+  --danger: #ff5b5b;
+  --success: #43a047;
+  --accent: #7c4dff;
+}
 // ==========================================
 // VARIABLES
 // ==========================================
@@ -132,9 +181,6 @@ p, span, label, input, button {
   text-align: left;
 }
 
-// ==========================================
-// RESPONSIVE BASE
-// ==========================================
 @media (max-width: 600px) {
   html {
     font-size: 15px;
@@ -146,11 +192,6 @@ p, span, label, input, button {
     font-size: 2rem;
   }
 }
-
-// ==========================================
-// COMPONENT SUGGESTIONS (EJEMPLO)
-// ==========================================
-// Puedes agregar estilos base para botones, tarjetas, formularios, etc.
 
 .button {
   @include flex-center;

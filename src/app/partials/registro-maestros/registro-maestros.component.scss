@@ -1,16 +1,15 @@
-.wrapper{
-  height: 100%;
+.wrapper {
   width: 100%;
-  //Flex
+  min-height: 100vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
-  background-color: #FFFFFF;
+  background-color: #fff;
 }
 
 .section-registro{
-  width: 100%;
+  width: 90%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -18,15 +17,15 @@
   align-items: center;
 }
 
-.body-registro{
+.body-registro {
   width: 100%;
-  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding-top: 1.5rem;
-  gap: 1.5rem;
+  padding-top: 2.5rem;
+  gap: 2.2rem;
+  background: #fff;
 }
 
 .title-user{
@@ -39,17 +38,17 @@
   opacity: 1;
 }
 
-.title-materias{
-  font-size: 18px;
-  text-align: center;
-  font-family: Nexa-Bold;
-  letter-spacing: 2px;
-  color: #231F20;
-  opacity: 1;
+mat-form-field{
+  width: 90%!important;
+  margin-left: 5%;
+  height: 48px!important;
+  text-align: left!important;
 }
 
+//Para la sección de botones
 .section-buttons{
-  width: 100%;
+  width: 90%;
+  margin-left: 5%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -93,56 +92,6 @@
   letter-spacing: 0px;
   color: #FFFFFF;
   opacity: 1;
-}
-
-
-mat-form-field{
-  width: 100%!important;
-  height: 48px!important;
-  text-align: left!important;
-}
-
-//Checkbox
-.checkbox-group{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  width: 100%;
-  align-items: center;
-  margin-top: 15px;
-  padding-left: 3px;
-  //gap: 10px;
-}
-
-.checkbox-item{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  width: 70%;
-  margin-left: 5px;
-}
-
-.d-checkbox-nombre{
-  text-align: left;
-  font-family: Nexa;
-  font-size: 16px;
-  letter-spacing: 0px;
-  color: #000000;
-  opacity: 1;
-  margin-left: 10px;
-}
-
-//Estilos para el checkbox
-::ng-deep .mdc-checkbox__background {
-  transform: scale(1.5);
-  background-color: #F6F4F5;
-  border: 1px solid #F6F4F5;
-}
-
-::ng-deep .mat-mdc-checkbox.mat-mdc-checkbox-checked .mdc-checkbox__background, .mdc-checkbox__ripple {
-  background-color: #0092B8 !important;
-  border-color: #0092B8 !important;
 }
 
 .mat-hint-margin {

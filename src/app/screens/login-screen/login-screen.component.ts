@@ -32,7 +32,17 @@ export class LoginScreenComponent implements OnInit{
     this.facadeService.login(this.username, this.password).subscribe(
       (response)=>{
         this.facadeService.saveUserData(response);
-        this.router.navigate(["home"]);
+        // Redirigir según el rol
+        const role = response.rol;
+        if (role === 'administrador') {
+          this.router.navigate(["/administrador"]);
+        } else if (role === 'maestro') {
+          this.router.navigate(["/maestros"]);
+        } else if (role === 'alumno') {
+          this.router.navigate(["/alumnos"]);
+        } else {
+          this.router.navigate(["home"]);
+        }
         this.load = false;
       }, (error)=>{
         alert("No se pudo iniciar sesión");

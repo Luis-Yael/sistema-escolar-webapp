@@ -17,10 +17,9 @@
           </div>
         </div>
       </div>
-       <div class="table-responsive">
-      <!-- Tabla de angular material -->
-      <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource">
+      <div class="table-scroll-wrapper">
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" style="min-width: 1200px; width: 100%;">
             <!-- 1era fila -->
             <ng-container matColumnDef="matricula">
                 <th mat-header-cell *matHeaderCellDef> Matrícula </th>
@@ -90,7 +89,8 @@
         </div>
         <mat-paginator [pageSizeOptions]="[5, 10, 20]"
                        showFirstLastButtons
-                       aria-label="Select page of periodic elements">
+                       aria-label="Select page of periodic elements"
+                       style="min-width: 1200px; width: 100%;">
         </mat-paginator>
       </div>
     </div>

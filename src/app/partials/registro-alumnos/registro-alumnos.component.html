@@ -82,7 +82,7 @@
 
       <mat-form-field class="mat-input" appearance="outline">
           <mat-label>Ocupación</mat-label>
-          <input matInput [(ngModel)]="alumno.ocupacion" placeholder="Escribe teléfono" (keypress)="soloLetras($event)">
+          <input matInput [(ngModel)]="alumno.ocupacion" placeholder="Escribe ocupacion" (keypress)="soloLetras($event)">
       </mat-form-field>
       <div *ngIf="errors.ocupacion" class="invalid-feedback">{{ errors.ocupacion }}</div>
 

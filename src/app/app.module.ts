@@ -25,6 +25,7 @@ import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-l
 
 // Partials
 import { SidebarComponent } from './partials/sidebar/sidebar.component';
+import { NavbarUserModule } from './partials/navbar-user/navbar-user.module';
 import { RegistroAdminComponent } from './partials/registro-admin/registro-admin.component';
 import { RegistroAlumnosComponent } from './partials/registro-alumnos/registro-alumnos.component';
 import { RegistroMaestrosComponent } from './partials/registro-maestros/registro-maestros.component';
@@ -75,7 +76,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     DashboardLayoutComponent,
 
     // Partials
-    SidebarComponent,
+  SidebarComponent,
+  // Navbar
+  // Si el componente no está en el módulo, se puede exportar desde el módulo y solo importar el módulo
     RegistroAdminComponent,
     RegistroAlumnosComponent,
     RegistroMaestrosComponent,
@@ -109,7 +112,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatCardModule,
     MatFormFieldModule,
     MatProgressBarModule,
-    MatSidenavModule // <-- ESTE ES EL CAMBIO QUE FALTABA
+  MatSidenavModule, // <-- ESTE ES EL CAMBIO QUE FALTABA
+  NavbarUserModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
